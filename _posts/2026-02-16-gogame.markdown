@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Learning Go by Making a Game"
+date:   2026-02-16 00:00:00 -0500
+categories: go game
+---
+I've dabbled in [Go](https://go.dev/) before at work to write small command line utility programs and to whip up small test programs. None were larger than a main.go but I really appreciate the simplicity of the language and the "batteries included" aspects of the language and tooling. Need a language with HTTP server and a reverse proxy server? Would you like standardized code formatting so nobody is arguing over tabs and spaces? Do you want a solid module and build packaging story (I'm definitely staring hard at you, Python)? Go's got you covered. After years of Java and Python, Go is breath of fresh air.
+
+My son has been getting into gaming lately and I've introduced him to my gaming classics: [Final Fantasy VI](https://en.wikipedia.org/wiki/Final_Fantasy_VI) on the Super Nintendo. The plot, the music, the battles, and the 2D pixel glory were peak epic for me when I was a kid and I knew they would hit hard him at his age. He expressed interest in making his own game someday and that resparked my interest in game programming. I've always had an interest in game programming since I was a kid with Logo Basic on an Apple IIe in elementary school. Over the years, I've accumulated bits of how they work - game event loops, linear algebra, sprites, frames per second, blitting, A*, etc. Recently over the holidays I had the thought, _I can make a game_. My plan is to write a game engine and let my son fill it with his content.
+
+I picked Go over Python, Java, and Rust because it has two of the qualities that I'm looking for: it's something that I have wanted to gain more experience with and I think that I can get productive in it pretty quickly. I know realistically that my first game is going to be crap. But my ultimate goal is to learn by iterating on it quickly. I've always told junior engineers that it's not going to be good the first two or three times that you code something. I think Go will let me achieve that.
+
+Go has a number of game engines to choose from. Why do I need a game engine? I need some sort of library to provide functionality like 2D graphics rendering and input handling. I decided to go with [Ebitengine](ebitengine.org) because the examples and sample code looked easy enough to follow. One cool feature of Ebitengine is that it can build a WebAssembly game that can be played in the browser.
+
+The kind of game that I wanted to make is a game like Final Fantasy. Your party of characters walk around a map and then would get into random battles with enemies. In these battles, you choose an action for your character to perform against the enemy and the enemy performs attacks on your characters. Once all of the enemies are defeated, your characters gain experience and get stronger. My plan is to build out the game engine and then eventually let my son build the map and populate it with various enemies, equipment, and items. If this works, it'll be a pretty cool collaboration!
+
+The first thing that I've read is MDN's [Tiles and tilemaps overview](https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps) which provides an excellent primer to how tilemap-based games work. Although the examples are in JavaScript, they are good learning resources and exercises for rewriting into Go. So that's where I started by translating the tilemap examples from JavaScript into Go and Ebitengine.
+
+I found this article [Making Games in Go for Absolute Beginners](https://threedots.tech/post/making-games-in-go/) very useful because it gave me an example on how to structure my Go project and how to do things like handling player input and animation frames in Ebitengine.
+
+<video muted autoplay controls>
+  <source src="{{ '/assets/mp4/game1.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Progress, but there is so much to do. I'll continue posting about my journey. The repo is [here](https://github.com/wvuong/go-rpg) if anyone is interested.
