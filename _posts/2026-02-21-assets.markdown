@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Learning Go by Making a Game: Assets"
+date:   2026-02-25 00:00:00 -0500
+categories: go game
+---
+When you're making a game, you need art assets to render otherwise your game is going to look quite boring! You need backgrounds, tiles, sprites, and UI widgets to make it all come together.
+
+My "starter" assets for my game were the ones that I pulled from the MDN's [Tiles and tilemaps overview](https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps) which was limited but easy to work with. I used the tile sheet and wrote some code to split it into 64x64 tiles and indexed into an array.
+
+As for the player character assets, I found [a sprite at OpenGameArt.org](https://opengameart.org/content/universal-lpc-sprite-male-01) that was in the right dimensions and had directional animation frames. I did the same process here: split the frames that I wanted into arrays, one for each direction (looking left, right, up, down). Given user input that moves forward in a direction, my animation code would loop through the directional array and swap in a different frame every few ticks.
+
+Both of these were good enough for me to get started and get familiar with graphics programming. I do intend to swap them out once I get beyond the proof-of-concept stage.
+
+I found these useful resources as well:
+
+* [itch.io](https://itch.io/game-assets) has a huge game assets section
+* [kenny.nl](https://kenney.nl/) has lots of different assets for different kind of games
