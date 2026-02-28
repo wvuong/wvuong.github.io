@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Learning Go by Making a Game: Embedded Assets"
+date:   2026-02-28 00:00:00 -0500
+categories: go game
+---
+One of the more delightful features of Go that I've discovered is the [embed package](https://pkg.go.dev/embed) which is a combination of compiler directive and standard library. With the embed package, project resources are bundled into the binary and assigned to the annotated struct field. For example from their docs:
+
+```
+import _ "embed"
+
+//go:embed hello.txt
+var s string
+
+print(s)
+```
+
+To embed all files with the package, you can use a glob expression on an `embed.FS`:
+
+```
+//go:embed *
+var assetsFS embed.FS
+
+data, _ := assetsFS.ReadFile("hello.txt")
+```
+
+Really useful for loading internal game assets!
