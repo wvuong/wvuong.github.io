@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Learning Go by Making a Game: AI"
+date:   2026-02-27 00:00:00 -0500
+categories: go game ai
+---
+I have not been using AI to generate any game code. I'm trying to learn Go and experience game programming with my own hands. I'm not interested in telling an AI agent to code things up for me.
+
+I used whatever AI is in Visual Studio Code once to ask why my tile collision detection wasn't working.
+
+![Asking AI]({{ '/assets/images/chat-ai.png' | relative_url }})
+
+Pretty good answer! When I ported the JavaScript code over, I forgot to negate one of the numerical variables. It suggested the code fixes and it worked.
+
+My main usage has been using AI to autocomplete my code comments - it usually does a pretty good job of recognizing the code and generating comments for the code.
+
+It is not good all the time though! Some of the code comment autocompletions are way off and sometimes the code quick fixes are buggy. But overall it's interesting.
