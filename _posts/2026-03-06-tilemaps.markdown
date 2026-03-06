@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Learning Go by Making a Game: Tilemaps"
+date:   2026-03-06 00:00:00 -0500
+categories: go game
+---
+My first representation of the game tilemap was a hard-coded array of integers where the value corresponded to a tile (or `0` for no tile) and fixed row and column counts. With a single dimensional array, I can calculate the array index for a specific `row` and `column` tile coordinate with something like `tiles[(row * maxRows + col]`. A renderer can render all of the tiles by just looping over the array, looking up the associated tile, and then doing the appropriate draw call on the tile's image at the screen `(x, y)` position. 
+
+The second version of my renderer and tilemap would be a tilemap that was larger than the window viewport so we would have to scroll the map as it moved. I introduced the concept of a camera which centered on a screen position (where player sprite is, for instance). The camera will move to follow the player's position which changed which tiles were visible in the viewport. Since we know how big the viewport is and the dimensions of the tiles, we can calculate the ranges of the visible tiles. The renderer can then do the same rendering but only for the visible tiles. I used this [MDN article](https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps/Square_tilemaps_implementation:_Scrolling_maps) as a reference to build this out.
+
+Long term, a hard-coded array of integers is not going to work. Asking my son to map tile numbers to an array without tooling was going to be a headache. Luckily, there is an OSS tilemap format and editor (!) available that I can hook into called [Tiled](https://doc.mapeditor.org/en/stable/manual/introduction/).
