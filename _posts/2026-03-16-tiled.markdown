@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Learning Go by Making a Game: Tiled"
+date:   2026-03-16 00:00:00 -0500
+categories: go game
+---
+
+>Long term, a hard-coded array of integers is not going to work. Asking my son to map tile numbers to an array without tooling was going to be a headache. Luckily, there is an OSS tilemap format and editor (!) available that I can hook into called [Tiled](https://doc.mapeditor.org/en/stable/manual/introduction/).
+
+The more and more that I thought about it, it became obvious to me that this was a necessary step for the maintainability of my game. I broke this into three three parts: 
+
+* Using Tiled to build a tilemap and tileset files
+* Replace the current tilemap asset loader
+* Replace the current tilemap renderer
+
+The first step was to download [Tiled](https://thorbjorn.itch.io/tiled) and go through its excellent [Getting Started](https://doc.mapeditor.org/en/stable/) documentation. Tiled supports a few key concepts that we need: layers, object layers, tile IDs, and tile sheets. We were already leveraging these but in a hard-coded fixed manner. Before creating my tilemap, I decided to replace my starter assets with improved terrain and sprite assets from [Tiny Swords](https://pixelfrog-assets.itch.io/tiny-swords). I started a new project in Tiled and imported the terrain as a tile sheet. From there, I created an island with a base layer of water and a second layer of coast and plains grass.
+
+To load the tilemap, I used the [go-tiled](https://github.com/lafriks/go-tiled) library. It looks like the library parses the Tiled XML file formats and presents everything in an easy-to-use API. One interesting aspect about the Tiled file format is the concept of a [Global Tile ID](https://doc.mapeditor.org/en/latest/reference/global-tile-ids/) which uniquely identifies a tilesheet tile across tilesheets. A tilemap can use multiple tilesheets so this concept becomes necessary to support that use case.
+
+I opted to keep roughly the same tilemap structures in place which was an array of arrays, where the "outer" array represents the layers and the "inner" array represented the XY tiles with Global Tile IDs. The renderer didn't need to change much in this case - we would just have an additional step of resolving the array value (a Global Tile ID) to a tilesheet tile. go-tiled does have a built-in renderer that can render the tilemap to an image. It seems like it would work for certain kind of games but I decided to keep my tile-based renderer.
+
+I had to do a bunch of other refactoring to remove the hard coding of tile sizes and tilemap sizes from my project. The ultimate goal is to be able to plop in Tiled files and everything would work!
+
+References:
+* [airplanes](https://github.com/m110/airplanes) - good examples of how to use go-tiled
+* [Trevor's Tutorials](https://trevors-tutorials.com/0011-creating-and-loading-tilemaps-using-ebitengine/) - a good tutorial on how to use Ebiten and go-tiled
